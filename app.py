@@ -1,5 +1,5 @@
 import json
-from flask import Flask, render_template, redirect, jsonify
+from flask import Flask, render_template, redirect, jsonify, abort
 
 import models
 
@@ -17,19 +17,19 @@ def homepage():
 @app.route('/login')
 def show_login():  # put application's code here
     """Method to display login form"""
-    return render_template('views/index.html')
+    return render_template('forms/login.html')
 
 
 @app.route('/signup')
 def display_signup():  # put application's code here
     """Method to display signup form"""
-    return render_template('views/index.html')
+    return render_template('forms/signup.html')
 
 
 @app.route('/dashboard')
 def display_dashboard():
     """Method to display a user's dashboard"""
-    return render_template('views/index.html')
+    return render_template('views/dashboard.html')
 
 
 @app.route('/note')
