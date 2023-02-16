@@ -3,11 +3,10 @@ import os
 from dotenv import dotenv_values, load_dotenv
 
 try:
-    env_variables = load_dotenv()
-    database_name = env_variables['DATABASE_NAME']
-    username = env_variables['DATABASE_USERNAME']
-    password = env_variables['DATABASE_PASSWORD']
-    database_uri = env_variables['DATABASE_URI']
+    database_name = os.getenv('DATABASE_NAME')
+    password = os.getenv('DATABASE_PASSWORD')
+    username = os.getenv('DATABASE_USERNAME')
+    database_uri = os.getenv('DATABASE_URI')
 except ValueError:
     env_variables = dotenv_values()
     database_name = env_variables['DATABASE_NAME']
