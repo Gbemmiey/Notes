@@ -8,7 +8,7 @@
 <body>
 <div class="parent">
     <h1>Create a new account</h1>
-    <form method="post">
+    <form method="post" action="/create_user">
         <div class="username form">
             <label for="username">Username</label>
             <input id="username" type="text" name="username" placeholder="Email address">
@@ -25,6 +25,9 @@
 
         <input type="submit" value="Submit">
     </form>
+    {% if error %}
+        <p> {{ error }}</p>
+    {% endif %}
     <a href="/login">Login</a>
 </div>
 </body>
