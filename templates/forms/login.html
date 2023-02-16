@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Log In!</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/form/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/form/sign.css') }}">
 </head>
 <body>
 <div class="parent">
@@ -11,17 +11,17 @@
     <form method="post">
         <div class="email form">
             <label for="email">Email</label>
-            <input id="email" type="text" name="email" placeholder="Email address">
+            <input id="email" type="email" name="email" placeholder="Email address">
 
         </div>
         <div class="password form">
             <label for="password">Password</label>
-            <input id="password" type="text" name="password" placeholder="Password">
+            <input id="password" type="password" name="password" placeholder="Password">
         </div>
 
         <input type="submit" value="Login">
     </form>
-    <button>Signup</button>
+    <a href="/signup">Signup</a>
 </div>
 
 </body>

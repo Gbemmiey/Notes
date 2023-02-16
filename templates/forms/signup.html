@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign Up!</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/view/signup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/form/sign.css') }}">
 </head>
 <body>
 <div class="parent">
-    <h1>Sign into your account</h1>
+    <h1>Create a new account</h1>
     <form method="post">
         <div class="username form">
             <label for="username">Username</label>
             <input id="username" type="text" name="username" placeholder="Email address">
+        </div>
+        <div class="email form">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="Email address">
 
-            <div class="email form">
-                <label for="email">Email</label>
-                <input id="email" type="text" name="email" placeholder="Email address">
+        </div>
+        <div class="password form">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" placeholder="Password">
+        </div>
 
-            </div>
-            <div class="password form">
-                <label for="password">Password</label>
-                <input id="password" type="text" name="password" placeholder="Password">
-            </div>
-
-            <input type="submit" value="Login">
+        <input type="submit" value="Submit">
     </form>
-    <button onclick="/signup">Signup</button>
+    <a href="/login">Login</a>
 </div>
 </body>
 </html>

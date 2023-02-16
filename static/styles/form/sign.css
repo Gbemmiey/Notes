@@ -12,6 +12,7 @@
 }
 
 form{
+    width: 100%;
     display: flex;
     flex-direction: column;
     height: auto;
@@ -31,6 +32,9 @@ input[type='submit']{
     background-color: antiquewhite;
     width: auto;
     /*border: none;*/
+}
+a{
+    text-decoration: none;
 }
 
 button{
