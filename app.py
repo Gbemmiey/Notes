@@ -61,16 +61,17 @@ def display_dashboard():
     return render_template('views/dashboard.html', name=current_user.name, text=text, notes=notes)
 
 
-@app.route('/note')
+@app.route('/note/<int:note_id>')
 @login_required
-def display_note(a=current_user):
+def display_note(note_id):
     """Method to display a user's dashboard"""
-    # if current_user.name == "Guest":
-    #     flash("You need to login")
-    #     return redirect(url_for('homepage'))
-    # else:
-    #     return render_template('views/note.html', name=a)
-    return render_template('views/note.html')
+    result = Note.query.filter_by(author_id=current_user.id, id=note_id).first()
+    note = {
+        'title': result.title,
+        'body': result.body,
+        'id': result.id
+    }
+    return render_template('views/note.html', note=note)
 
 
 @app.route('/create-note')
