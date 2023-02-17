@@ -6,7 +6,8 @@ try:
     database_name = os.getenv('DATABASE_NAME')
     password = os.getenv('DATABASE_PASSWORD')
     username = os.getenv('DATABASE_USERNAME')
-    database_uri = os.getenv('DATABASE_URI')
+    ssl = f'?sslmode=require'
+    database_uri = os.getenv('DATABASE_URI') + ssl
 except ValueError:
     env_variables = dotenv_values()
     database_name = env_variables['DATABASE_NAME']
