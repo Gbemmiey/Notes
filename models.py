@@ -3,11 +3,16 @@ from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
+from flask_login import UserMixin, LoginManager
+from flask_login import AnonymousUserMixin
 
 from config import Config
 
 db = SQLAlchemy()
 Base = declarative_base()
+
+login_manager = LoginManager()
+login_manager.login_view = 'display_login'
 
 
 def setup_db(app, database_path=Config.SQLALCHEMY_DATABASE_URI):
@@ -21,13 +26,18 @@ def setup_db(app, database_path=Config.SQLALCHEMY_DATABASE_URI):
     db.init_app(app)
     # db.drop_all()
     db.create_all()
+    login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.filter_by(id=int(user_id)).first()
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
     name = Column(String(64))
-    email = Column(String(64), unique=True)
+    email = Column(String(64), unique=True, index=True)
     password = Column(String)
     notes = relationship('Note')
 
@@ -54,3 +64,5 @@ class Note(db.Model):
     author_id = Column(Integer, ForeignKey('user.id'))
     created_on = Column(DateTime)
     modified_on = Column(DateTime)
+
+

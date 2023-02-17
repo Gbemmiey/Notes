@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/view/dashboard.css') }}">
 </head>
 <body>
-<h1>Hello User</h1>
-<button>Logout</button>
+<h1>Hello {{ name }}</h1>
+<a href="/logout">Logout</a>
 <div class="notes-list">
     <h3>Title</h3>
     <p>Description</p>

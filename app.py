@@ -6,11 +6,16 @@ from flask import flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.exc import IntegrityError, NoResultFound
 
+from flask_login import login_required, current_user
+from flask_login import logout_user, login_user
+
+
 from models import User, Note, setup_db
 from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
 
 with app.app_context():
     setup_db(app)
@@ -23,7 +28,7 @@ def homepage():
     return render_template('views/index.html')
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET'])
 def display_login():  # put application's code here
     """Method to display login form"""
     error = None
@@ -38,36 +43,52 @@ def display_signup():  # put application's code here
 
 
 @app.route('/dashboard')
+@login_required
 def display_dashboard():
     """Method to display a user's dashboard"""
-    return render_template('views/dashboard.html')
+    return render_template('views/dashboard.html', name=current_user.name)
 
 
 @app.route('/note')
-def display_note():
+@login_required
+def display_note(a=current_user):
     """Method to display a user's dashboard"""
+    # if current_user.name == "Guest":
+    #     flash("You need to login")
+    #     return redirect(url_for('homepage'))
+    # else:
+    #     return render_template('views/note.html', name=a)
     return render_template('views/note.html')
 
 
-@app.route('/login_user', methods=['POST'])
-def login_user():
+@app.route('/login', methods=['POST'])
+def login():
     error = f'Invalid credentials'
 
     email = request.form['email']
     password = request.form['password']
 
     try:
-        user = User.query.filter_by(email=email).one()
-
+        user = User.query.filter_by(email=email).first()
         if check_password_hash(user.password, password):
+            login_user(user)
             flash("Logged In")
-            return redirect(url_for('display_dashboard'))
         else:
             flash("Invalid credentials")
             return render_template('forms/login.html', error=error)
 
     except NoResultFound:
         return render_template('forms/login.html', error=error)
+
+    return redirect(url_for('display_dashboard'))
+
+
+@login_required
+@app.route('/logout')
+def logout():
+    logout_user()
+    flash("You have been logged out")
+    return redirect(url_for('homepage'))
 
 
 @app.route('/create_user', methods=['POST'])
@@ -81,7 +102,7 @@ def create_user():
         user = User(name=username, email=email, password=hashed_pass)
         user.insert()
         flash("Account successfully created")
-        return redirect(url_for('show_login'))
+        return redirect(url_for('display_login'))
     except IntegrityError:
         user.rollback()
         error = f'Email already exists'
@@ -90,11 +111,6 @@ def create_user():
 
     # except Exception as e:
     #     print(repr(e))
-
-
-@app.route('/logout')
-def logout_user():
-    return redirect(url_for('homepage'))
 
 
 @app.errorhandler(404)
