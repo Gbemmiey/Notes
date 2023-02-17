@@ -1,0 +1,45 @@
+*{
+    box-sizing: border-box;
+}
+
+.parent{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+}
+
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+input{
+    width: 100%;
+    line-height: 2.0em;
+}
+.form{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+input[type='submit']{
+    background-color: antiquewhite;
+    width: auto;
+    /*border: none;*/
+}
+a{
+    text-decoration: none;
+}
+
+button{
+    width: auto;
+}
+textarea{
+    width: 100%;
+}

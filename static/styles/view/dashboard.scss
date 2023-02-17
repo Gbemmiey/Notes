@@ -6,14 +6,13 @@ body {
   /*background-color: blue;*/
 }
 
-a {
+a{
   text-decoration: none;
   background: darkslateblue;
   color: white;
   padding: 8px;
   border-radius: 8px;
 }
-
 .notes-list {
   display: flex;
   margin: 20px auto auto;
@@ -28,14 +27,14 @@ a {
   margin-bottom: 20px;
   background-color: antiquewhite;
   width: 79%;
-}
-.note h3 {
-  font-style: italic;
-  align-self: center;
-  color: aliceblue;
-}
-.note p {
-  width: 100%;
-}
 
-/*# sourceMappingURL=dashboard.css.map */
+  h3 {
+    font-style: italic;
+    align-self: center;
+    color: aliceblue;
+  }
+
+  p {
+    width: 100%;
+  }
+}

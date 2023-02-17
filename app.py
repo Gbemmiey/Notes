@@ -9,13 +9,11 @@ from sqlalchemy.exc import IntegrityError, NoResultFound
 from flask_login import login_required, current_user
 from flask_login import logout_user, login_user
 
-
 from models import User, Note, setup_db
 from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
-
 
 with app.app_context():
     setup_db(app)
@@ -46,7 +44,20 @@ def display_signup():  # put application's code here
 @login_required
 def display_dashboard():
     """Method to display a user's dashboard"""
-    return render_template('views/dashboard.html', name=current_user.name)
+    try:
+        notes = Note.query.filter_by(author_id=current_user.id).all()
+        notes_list = []
+        for n in notes:
+            note = {
+                'name': n.title,
+                'body': n.body
+            }
+            notes_list.append(note)
+            print(notes_list)
+        text = f"You have {len(notes)} notes"
+    except:
+        text = "You don\'t have a note yet"
+    return render_template('views/dashboard.html', name=current_user.name, text=text, notes=notes)
 
 
 @app.route('/note')
@@ -59,6 +70,43 @@ def display_note(a=current_user):
     # else:
     #     return render_template('views/note.html', name=a)
     return render_template('views/note.html')
+
+
+@app.route('/create-note')
+@login_required
+def display_note_form():
+    title = f'Create a new Note'
+    method = f'post'
+    return render_template('forms/note.html', title=title, method=method)
+
+
+@app.route('/update-note')
+@login_required
+def display_update_note_form():
+    title = f'Update Note'
+    method = f'patch'
+    return render_template('forms/note.html', title=title, method=method)
+
+
+@app.route('/note', methods=['PATCH'])
+@login_required
+def update_note():
+    """Method to update an existing post"""
+    return redirect(url_for('dashboard'))
+
+
+@app.route('/note', methods=['POST'])
+@login_required
+def add_note(a=current_user):
+    """Method to create a new post"""
+    title = request.form['title']
+    body = request.form['body']
+    author_id = current_user.id
+
+    note = Note(title=title, body=body, author_id=author_id)
+    note.insert()
+
+    return redirect(url_for('display_dashboard'))
 
 
 @app.route('/login', methods=['POST'])
