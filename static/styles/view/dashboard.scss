@@ -4,34 +4,53 @@
 
 body {
   /*background-color: blue;*/
+  padding: 0;
+  margin: 0;
 }
 
-a{
-  text-decoration: none;
-  background: darkslateblue;
-  color: white;
-  padding: 8px;
-  border-radius: 8px;
+.quick-links {
+  width: 50%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    text-decoration: none;
+    background: darkslateblue;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+  }
+
 }
+
 .notes-list {
   display: flex;
   margin: 20px auto auto;
+  padding: 10px;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   width: 80%;
   height: auto;
+  background-color: darkseagreen;
+
+  span {
+    margin: 10px auto;
+  }
 }
 
 .note {
   margin-bottom: 20px;
   background-color: antiquewhite;
-  width: 79%;
+  width: 100%;
+  border-radius: 20px;
+  padding: 10px;
 
-  h3 {
-    font-style: italic;
-    align-self: center;
-    color: aliceblue;
+  a {
+    text-decoration: none;
+    color: teal;
+    border-radius: 8px;
   }
 
   p {

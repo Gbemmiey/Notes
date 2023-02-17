@@ -4,9 +4,17 @@
 
 body {
   /*background-color: blue;*/
+  padding: 0;
+  margin: 0;
 }
 
-a {
+.quick-links {
+  width: 50%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
+.quick-links a {
   text-decoration: none;
   background: darkslateblue;
   color: white;
@@ -17,22 +25,29 @@ a {
 .notes-list {
   display: flex;
   margin: 20px auto auto;
+  padding: 10px;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   width: 80%;
   height: auto;
+  background-color: darkseagreen;
+}
+.notes-list span {
+  margin: 10px auto;
 }
 
 .note {
   margin-bottom: 20px;
   background-color: antiquewhite;
-  width: 79%;
+  width: 100%;
+  border-radius: 20px;
+  padding: 10px;
 }
-.note h3 {
-  font-style: italic;
-  align-self: center;
-  color: aliceblue;
+.note a {
+  text-decoration: none;
+  color: teal;
+  border-radius: 8px;
 }
 .note p {
   width: 100%;

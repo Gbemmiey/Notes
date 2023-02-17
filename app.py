@@ -50,7 +50,8 @@ def display_dashboard():
         for n in notes:
             note = {
                 'name': n.title,
-                'body': n.body
+                'body': n.body,
+                'id': n.id
             }
             notes_list.append(note)
             print(notes_list)
