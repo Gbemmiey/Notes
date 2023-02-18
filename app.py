@@ -77,14 +77,12 @@ def display_note(note_id):
 @app.route('/create-note')
 @login_required
 def display_note_form():
-    title = f'Create a new Note'
-    method = f'post'
-    return render_template('forms/note.html', title=title, method=method)
+    return render_template('forms/note.html')
 
 
 @app.route('/note', methods=['POST'])
 @login_required
-def add_note(a=current_user):
+def add_note():
     """Method to create a new post"""
     title = request.form['title']
     body = request.form['body']
@@ -108,19 +106,17 @@ def login():
         if user.password:
             if check_password_hash(user.password, password):
                 login_user(user)
-                flash("Logged In")
                 return redirect(url_for('display_dashboard'))
             else:
-                flash("Invalid credentials")
+                error = "Invalid credentials"
                 return render_template('forms/login.html', error=error)
         else:
             error = 'Email not registered'
             flash("Invalid credentials")
             return render_template('forms/login.html', error=error)
     except NoResultFound:
+        error = "No result found"
         return render_template('forms/login.html', error=error)
-
-    return redirect(url_for('display_dashboard'))
 
 
 @login_required
