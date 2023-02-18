@@ -35,6 +35,9 @@ a {
   text-align: center;
 }
 .note p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 40px;
   font-family: cursive;
 }
 

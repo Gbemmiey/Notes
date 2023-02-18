@@ -26,7 +26,7 @@ body {
 
 .notes-list {
   display: flex;
-  margin: 20px auto auto;
+  margin: 20px auto;
   padding: 10px;
   flex-direction: column;
   align-items: center;
@@ -48,12 +48,24 @@ body {
   padding: 10px;
 
   a {
+    display: flex;
+    justify-content: center;
     text-decoration: none;
+    width: 100%;
     color: teal;
-    border-radius: 8px;
+    text-align: center;
+  }
+
+  span {
+    width: inherit;
+    align-self: center;
   }
 
   p {
-    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 40px;
+    font-family: cursive;
   }
+
 }
