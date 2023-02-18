@@ -55,9 +55,9 @@ def display_dashboard():
             }
             notes_list.append(note)
             print(notes_list)
-        text = f"You have {len(notes)} notes"
+        text = f"{len(notes)} notes"
     except:
-        text = "You don\'t have a note yet"
+        text = "Create a new note"
     return render_template('views/dashboard.html', name=current_user.name, text=text, notes=notes)
 
 

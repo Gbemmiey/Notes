@@ -19,7 +19,6 @@ a {
   border-radius: 5%;
   background: teal;
 }
-
 .quick-links {
   margin-top: 50px;
   display: flex;
@@ -27,25 +26,23 @@ a {
   justify-content: space-between;
 }
 
-.note {
+.note{
   width: 90%;
   margin: 20px auto;
-}
-.note h3 {
-  text-align: center;
-}
-.note p {
-  font-family: cursive;
+  h3{
+    text-align: center;
+  }
+  p{
+    font-family: cursive;
+  }
 }
 
 .note-links {
   display: flex;
   width: 100%;
   justify-content: space-between;
-}
 
-.alert {
-  background-color: sienna;
 }
-
-/*# sourceMappingURL=note.css.map */
+.alert{
+    background-color: sienna;
+  }

@@ -10,6 +10,22 @@
     justify-content: space-between;
     margin: auto;
 }
+a {
+  text-decoration: none;
+  padding: 10px;
+  color: white;
+  border-radius: 5%;
+  background: teal;
+}
+.quick-links {
+  margin-top: 50px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.alert{
+    background-color: darkred;
+}
 
 form{
     width: 100%;

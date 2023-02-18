@@ -6,17 +6,24 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/view/note.css') }}">
 </head>
 <body>
-<div class="quick-links"></div>
+<div class="parent">
+    <div class="quick-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout" class="alert">Logout</a>
+    </div>
 
-<div class="note">
+    <div class="note">
 
-    <h3>{{ note.title }}</h3>
-    <p>{{ note.body }}</p>
+        <h3>{{ note.title }}</h3>
+        <hr>
+        <p>{{ note.body }}</p>
+    </div>
     <div class="note-links">
         <a href="/note/{{ note.id }}/edit">Edit</a>
-        <a href="/note/{{ note.id }}/delete">Delete</a>
+        <a class='alert' href="/note/{{ note.id }}/delete">Delete</a>
     </div>
 
 </div>
+
 </body>
 </html>
