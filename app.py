@@ -111,7 +111,6 @@ def login():
         else:
             flash("Invalid credentials")
             return render_template('forms/login.html', error=error)
-
     except NoResultFound:
         return render_template('forms/login.html', error=error)
 
