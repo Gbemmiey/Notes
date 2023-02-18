@@ -25,7 +25,7 @@ def setup_db(app, database_path=Config.SQLALCHEMY_DATABASE_URI):
     db.app = app
     db.init_app(app)
 
-    db.drop_all()
+    # db.drop_all()
     db.create_all()
 
     login_manager.init_app(app)
