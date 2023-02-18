@@ -109,12 +109,14 @@ def login():
             if check_password_hash(user.password, password):
                 login_user(user)
                 flash("Logged In")
+                return redirect(url_for('display_dashboard'))
             else:
                 flash("Invalid credentials")
-            return render_template('forms/login.html', error=error)
+                return render_template('forms/login.html', error=error)
         else:
+            error = 'Email not registered'
             flash("Invalid credentials")
-        return render_template('forms/login.html', error=error)
+            return render_template('forms/login.html', error=error)
     except NoResultFound:
         return render_template('forms/login.html', error=error)
 
