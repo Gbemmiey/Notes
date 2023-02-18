@@ -105,12 +105,16 @@ def login():
 
     try:
         user = User.query.filter_by(email=email).first()
-        if check_password_hash(user.password, password):
-            login_user(user)
-            flash("Logged In")
+        if user.password:
+            if check_password_hash(user.password, password):
+                login_user(user)
+                flash("Logged In")
+            else:
+                flash("Invalid credentials")
+            return render_template('forms/login.html', error=error)
         else:
             flash("Invalid credentials")
-            return render_template('forms/login.html', error=error)
+        return render_template('forms/login.html', error=error)
     except NoResultFound:
         return render_template('forms/login.html', error=error)
 
@@ -178,7 +182,6 @@ def update_note(note_id):
 @app.route('/note/<int:note_id>/delete')
 @login_required
 def delete_note(note_id):
-
     note = Note.query.filter_by(author_id=current_user.id, id=note_id).first()
     note.delete()
 
