@@ -54,7 +54,7 @@ def display_dashboard():
                 'id': n.id
             }
             notes_list.append(note)
-            print(notes_list)
+
         text = f"{len(notes)} notes"
     except:
         text = "Create a new note"
@@ -96,26 +96,20 @@ def add_note():
 
 @app.route('/login', methods=['POST'])
 def login():
-    error = f'Invalid credentials'
-
     email = request.form['email']
     password = request.form['password']
 
     try:
         user = User.query.filter_by(email=email).first()
-        if user.password:
-            if check_password_hash(user.password, password):
-                login_user(user)
-                return redirect(url_for('display_dashboard'))
-            else:
-                error = "Invalid credentials"
-                return render_template('forms/login.html', error=error)
+        if check_password_hash(user.password, password):
+            login_user(user)
+            return redirect(url_for('display_dashboard'))
         else:
-            error = 'Email not registered'
-            flash("Invalid credentials")
+            error = "Invalid credentials"
             return render_template('forms/login.html', error=error)
     except NoResultFound:
-        error = "No result found"
+        error = 'Email not registered'
+        flash("Invalid credentials")
         return render_template('forms/login.html', error=error)
 
 
@@ -144,9 +138,6 @@ def create_user():
         error = f'Email already exists'
 
     return render_template('forms/signup.html', error=error)
-
-    # except Exception as e:
-    #     print(repr(e))
 
 
 @app.route('/note/<int:note_id>/edit')
