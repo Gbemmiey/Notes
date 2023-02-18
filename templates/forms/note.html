@@ -7,21 +7,46 @@
 </head>
 <body>
 <div class="parent">
-    <form method="{{ method }}" action="/note">
-        <h1>{{ title }}</h1>
-        <div class="title form">
-            <label for="title">Title</label>
-            <input id="title" type="text" name="title" placeholder="Subject">
 
-        </div>
-        <div class="body form">
-            <label for="body">Body</label>
-            <textarea id="body" rows="10" name="body" required placeholder="Message"></textarea>
-        </div>
+    {% if note %}
+        <form method="post" action="/note/{{ note.id }}/update">
+            <h1>Update Note</h1>
 
-        <input type="submit" value="Save">
+            <div class="title form">
+                <label for="title">Title</label>
+                <input id="title" required type="text" name="title" value="{{ note.title }}" placeholder="{{ note.title }}">
 
-    </form>
+            </div>
+            <div class="body form">
+                <label for="body">Body</label>
+                <textarea id="body" rows="10" name="body" required>
+                {{ note.body }}
+                </textarea>
+            </div>
+
+            <input type="submit" value="Update">
+        </form>
+
+    {% else %}
+
+        <form method="post" action="/note">
+            <h1>Create a new Note</h1>
+
+            <div class="title form">
+                <label for="title">Title</label>
+                <input id="title" type="text" name="title" placeholder="Subject" required>
+
+            </div>
+            <div class="body form">
+                <label for="body">Body</label>
+                <textarea id="body" rows="10" name="body" required placeholder="Message"></textarea>
+            </div>
+
+            <input type="submit" value="Save">
+
+        </form>
+
+    {% endif %}
 
 </div>
 

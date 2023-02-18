@@ -9,17 +9,13 @@ try:
     database_path = db_url
 except:
     env_variables = dotenv_values()
-    db_url = env_variables['DATABASE_URL']
-    database_path = str.replace(db_url, 'postgres', 'postgresql')
-    print(database_path)
 
-    # ssl_mode = f'?sslmode=require'
-    # database_name = env_variables['DATABASE_NAME']
-    # username = env_variables['DATABASE_USERNAME']
-    # password = env_variables['DATABASE_PASSWORD']
-    # database_uri = env_variables['DATABASE_URI']
-    # database_path = f'postgresql://{username}:{password}@{database_uri}/{database_name}' + ssl_mode
-
+    ssl_mode = f'?sslmode=require'
+    database_name = env_variables['DATABASE_NAME']
+    username = env_variables['DATABASE_USERNAME']
+    password = env_variables['DATABASE_PASSWORD']
+    database_uri = env_variables['DATABASE_URI']
+    database_path = f'postgresql://{username}:{password}@{database_uri}/{database_name}' + ssl_mode
 
 
 class Config:

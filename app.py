@@ -82,21 +82,6 @@ def display_note_form():
     return render_template('forms/note.html', title=title, method=method)
 
 
-@app.route('/update-note')
-@login_required
-def display_update_note_form():
-    title = f'Update Note'
-    method = f'patch'
-    return render_template('forms/note.html', title=title, method=method)
-
-
-@app.route('/note', methods=['PATCH'])
-@login_required
-def update_note():
-    """Method to update an existing post"""
-    return redirect(url_for('dashboard'))
-
-
 @app.route('/note', methods=['POST'])
 @login_required
 def add_note(a=current_user):
@@ -161,6 +146,44 @@ def create_user():
 
     # except Exception as e:
     #     print(repr(e))
+
+
+@app.route('/note/<int:note_id>/edit')
+@login_required
+def display_edit_note_form(note_id):
+    title = f'Edit Note'
+    result = Note.query.filter_by(author_id=current_user.id, id=note_id).first()
+    note = {
+        'title': result.title,
+        'body': result.body,
+        'id': result.id
+    }
+    return render_template('forms/note.html', title=title, note=note)
+
+
+@app.route('/note/<int:note_id>/update', methods=['POST'])
+@login_required
+def update_note(note_id):
+    title = request.form['title']
+    body = request.form['body']
+
+    note = Note.query.filter_by(author_id=current_user.id, id=note_id).first()
+    note.title = title
+    note.body = body
+
+    note.update()
+
+    return redirect(url_for('display_dashboard'))
+
+
+@app.route('/note/<int:note_id>/delete')
+@login_required
+def delete_note(note_id):
+
+    note = Note.query.filter_by(author_id=current_user.id, id=note_id).first()
+    note.delete()
+
+    return redirect(url_for('display_dashboard'))
 
 
 @app.errorhandler(404)

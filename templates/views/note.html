@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>View Note</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles/view/note.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/view/note.css') }}">
 </head>
 <body>
+<div class="quick-links"></div>
+
 <div class="note">
+
     <h3>{{ note.title }}</h3>
     <p>{{ note.body }}</p>
+    <div class="note-links">
+        <a href="/note/{{ note.id }}/edit">Edit</a>
+        <a href="/note/{{ note.id }}/delete">Delete</a>
+    </div>
 
 </div>
 </body>
