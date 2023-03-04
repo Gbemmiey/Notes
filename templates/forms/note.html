@@ -6,51 +6,55 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/form/note.css') }}">
 </head>
 <body>
-<div class="parent">
-    <div class="quick-links">
-        <a href="/dashboard">Dashboard</a>
-        <a class="alert" href="/logout" class="alert">Logout</a>
-    </div>
+<div class="container">
+    <div class="parent">
+        <div class="quick-links">
+            <a href="/dashboard">Dashboard</a>
+            <a class="alert" href="/logout" class="alert">Logout</a>
+        </div>
 
-    {% if note %}
-        <form method="post" action="/note/{{ note.id }}/update">
-            <h1>Update Note</h1>
+        {% if note %}
+            <form method="post" action="/note/{{ note.id }}/update">
+                <h1>Update Note</h1>
 
-            <div class="title form">
-                <label for="title">Title</label>
-                <input id="title" required type="text" name="title" value="{{ note.title }}" placeholder="{{ note.title }}">
+                <div class="title form">
+                    <label for="title">Title</label>
+                    <input id="title" required type="text" name="title" value="{{ note.title }}"
+                           placeholder="{{ note.title }}">
 
-            </div>
-            <div class="body form">
-                <label for="body">Body</label>
-                <textarea id="body" rows="10" name="body" wrap="hard" required>
+                </div>
+                <div class="body form">
+                    <label for="body">Body</label>
+                    <textarea id="body" rows="10" name="body" wrap="hard" required>
                 {{ note.body }}
                 </textarea>
-            </div>
+                </div>
 
-            <input type="submit" value="Update">
-        </form>
+                <input type="submit" value="Update">
+            </form>
 
-    {% else %}
+        {% else %}
 
-        <form method="post" action="/note">
-            <h1>Create a new Note</h1>
+            <form method="post" action="/note">
+                <h1>Create a new Note</h1>
 
-            <div class="title form">
-                <label for="title">Title</label>
-                <input id="title" type="text" name="title" placeholder="Subject" required>
+                <div class="title form">
+                    <label for="title">Title</label>
+                    <input id="title" type="text" name="title" placeholder="Subject" required>
 
-            </div>
-            <div class="body form">
-                <label for="body">Body</label>
-                <textarea id="body" rows="10" name="body" wrap="hard" required placeholder="Message"></textarea>
-            </div>
+                </div>
+                <div class="body form">
+                    <label for="body">Body</label>
+                    <textarea id="body" rows="10" name="body" wrap="hard" required placeholder="Message"></textarea>
+                </div>
 
-            <input type="submit" value="Save">
+                <input type="submit" value="Save">
 
-        </form>
+            </form>
 
-    {% endif %}
+        {% endif %}
+
+    </div>
 
 </div>
 

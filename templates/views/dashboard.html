@@ -6,24 +6,30 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/view/dashboard.css') }}">
 </head>
 <body>
-<h1>Hello {{ name }}</h1>
-<div class="quick-links">
-    <a href="/logout">Logout</a>
-    <a href="/create-note">Create Note</a>
+<div class="container">
+    <div class="parent">
+        <h1>Hello <span id="name">{{ name }}</span> </h1>
+        <div class="quick-links">
+            <a href="/logout">Logout</a>
+            <a href="/create-note">Create Note</a>
+        </div>
+
+        <div class="notes-list">
+            <span>{{ text }}</span>
+            {% if notes %}
+                {% for note in notes %}
+                    <div class="note">
+                        <a href="/note/{{ note.id }}" class="title"><span>{{ note.title }}</span></a>
+                        <hr>
+                        <a id="desc" href="/note/{{ note.id }}">{{ note.body }}</a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+        </div>
+
+    </div>
 </div>
 
-<div class="notes-list">
-    <span>{{ text }}</span>
-    {% if notes %}
-        {% for note in notes %}
-            <div class="note">
-                <a href="/note/{{ note.id }}"><span>{{ note.title }}</span></a>
-                <hr>
-                <p>{{ note.body }}</p>
-            </div>
-        {% endfor %}
-    {% endif %}
-
-</div>
 </body>
 </html>

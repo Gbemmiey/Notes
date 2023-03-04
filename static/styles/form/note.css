@@ -1,33 +1,54 @@
-*{
+* {
     box-sizing: border-box;
 }
 
-.parent{
+html, body {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    width: auto;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+}
+.parent {
+    margin-top: auto;
+    margin-bottom: auto;
+    align-self: center;
+    width: 50%;
     display: flex;
     flex-direction: column;
-    width: 80%;
     align-items: center;
     justify-content: space-between;
-    margin: auto;
+    height: 90%;
 }
+
+
+
 a {
-  text-decoration: none;
-  padding: 10px;
-  color: white;
-  border-radius: 5%;
-  background: teal;
+    text-decoration: none;
+    padding: 10px;
+    color: white;
+    border-radius: 5%;
+    background: teal;
 }
+
 .quick-links {
-  margin-top: 50px;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
+    margin-top: 50px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
-.alert{
+
+.alert {
     background-color: darkred;
 }
 
-form{
+form {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -35,27 +56,31 @@ form{
     justify-content: space-between;
     margin-bottom: 50px;
 }
-input{
+
+input {
     width: 100%;
     line-height: 2.0em;
 }
-.form{
+
+.form {
     width: 100%;
     margin-bottom: 20px;
 }
 
-input[type='submit']{
+input[type='submit'] {
     background-color: antiquewhite;
     width: auto;
     /*border: none;*/
 }
-a{
+
+a {
     text-decoration: none;
 }
 
-button{
+button {
     width: auto;
 }
-textarea{
+
+textarea {
     width: 100%;
 }
